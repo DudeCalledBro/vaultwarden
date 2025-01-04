@@ -1,0 +1,30 @@
+argument_specs:
+  main:
+    short_description: nginx
+    description: "Deploy Nginx."
+    author: dudecalledbro
+    options:
+      nginx_docker_image:
+        type: str
+        required: true
+        description: "Specifies the nginx docker image to be used."
+      nginx_docker_path:
+        type: str
+        required: true
+        description: "Defines the deployment path for nginx."
+      nginx_docker_owner:
+        type: str
+        required: true
+        description: "Defines the deployment owner for nginx."
+      nginx_docker_group:
+        type: str
+        required: true
+        description: "Defines the deployment group for nginx."
+      nginx_docker_tls_crt:
+        type: str
+        required: true
+        description: "Define the nginx tls certificate."
+      nginx_docker_tls_key:
+        type: str
+        required: true
+        description: "Define the nginx tls certificate key."
