@@ -1,0 +1,14 @@
+# ignore deployment config
+inventory.yml
+config.yml
+
+# ignore deployment certificates
+certs/*
+!certs/.gitkeep
+
+# ginore common
+.DS_Store
+*.retry
+*/__pycache__
+*.pyc
+.cache

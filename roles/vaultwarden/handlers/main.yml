@@ -1,0 +1,7 @@
+- name: Restart vaultwarden container
+  ansible.builtin.command: >-
+    docker compose --ansi never --progress plain restart
+  args:
+    chdir: "{{ vaultwarden_docker_path }}"
+  changed_when: true
+  listen: restart vaultwarden

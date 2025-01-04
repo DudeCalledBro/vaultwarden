@@ -1,0 +1,3 @@
+repository:
+  description: "Ansible Playbooks for Automating Vaultwarden Deployment with Reverse Proxy."
+  topics: ansible, automation, docker-compose, vaultwarden

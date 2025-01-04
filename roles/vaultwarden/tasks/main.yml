@@ -1,0 +1,31 @@
+- name: Create vaultwarden directory
+  ansible.builtin.file:
+    path: "{{ vaultwarden_docker_path }}"
+    owner: "{{ vaultwarden_docker_owner }}"
+    group: "{{ vaultwarden_docker_group }}"
+    state: directory
+    mode: 0755
+
+- name: Create vaultwarden docker compose deployment
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ vaultwarden_docker_path }}/docker-compose.yml"
+    owner: "{{ vaultwarden_docker_owner }}"
+    group: "{{ vaultwarden_docker_group }}"
+    trim_blocks: false
+    mode: 0644
+  notify: restart vaultwarden
+
+- name: Validate vaultwarden docker compose deployment
+  ansible.builtin.command: docker compose config --quiet
+  args:
+    chdir: "{{ vaultwarden_docker_path }}"
+  changed_when: false
+
+- name: Startup vaultwarden docker compose deployment
+  ansible.builtin.command: >-
+    docker compose --ansi never --progress plain up --detach
+  args:
+    chdir: "{{ vaultwarden_docker_path }}"
+  register: vaultwarden_container_startup
+  changed_when: "'Started' in vaultwarden_container_startup.stdout"

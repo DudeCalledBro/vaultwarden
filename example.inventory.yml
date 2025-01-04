@@ -1,0 +1,4 @@
+all:
+  hosts:
+    vaultwarden.local:
+      ansible_user: pi

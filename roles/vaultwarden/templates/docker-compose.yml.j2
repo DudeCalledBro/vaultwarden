@@ -1,0 +1,21 @@
+{{ ansible_managed | comment }}
+---
+services:
+  vaultwarden:
+    image: "{{ vaultwarden_docker_image }}"
+    container_name: vaultwarden
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "10"
+    environment:
+    {%- for item in (vaultwarden_docker_env | dict2items) %}
+      {{ item.key }}: "{{ item.value }}"
+    {%- endfor %}
+    ports:
+    - "127.0.0.1:8080:80"
+    volumes:
+    - "/etc/localtime:/etc/localtime:ro"
+    - "{{ vaultwarden_docker_path }}/data:/data:rw"

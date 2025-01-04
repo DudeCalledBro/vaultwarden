@@ -1,0 +1,11 @@
+# Specifies the vaultwarden docker image to be used.
+vaultwarden_docker_image: "vaultwarden/server:latest"
+
+# Specifies the vaultwarden path, owner and group.
+vaultwarden_docker_path: /opt/vaultwarden
+vaultwarden_docker_owner: root
+vaultwarden_docker_group: root
+
+# Define environment variables for the vaultwarden container.
+vaultwarden_docker_env:
+  TZ: "Europe/Berlin"
